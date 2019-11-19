@@ -74,8 +74,6 @@ ylim([60 140]);
 end
 
 function f = diffeqs(~,y)
-CF = 1; %change whether CF is present
-
 B = y(1); P = y(2); A = y(3); M = y(4); H = y(5); D = y(6);
 Bp = (((B^0.8)*(M^1.2)) - ((0.8*B^1.2)*(P^0.1)))*(M^-2.4);
 Pp = (20*(B^0.2)*(D^0.4)*(A^-0.1))-50*(P^0.5);
