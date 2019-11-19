@@ -31,7 +31,7 @@ AB = 0
 @ 302 AB = 5
 @ 312 AB = 0
 
-B P A  M H D LF PH
+!! B P A  M H D LF PH
 
 t0 = 0
 tf = 400
