@@ -5,7 +5,7 @@ CF = 1; %1 means the patient has CF, 0 means no CF
 if CF == 1
     y0 = [1278.037, 64.7532, 15.04461, 12.75542, 1713.089, 100];
     % initial conditions: B = y0(1), P = y0(2), A = y0(3), M = y0(4), H = y0(5),
-    % D = y0(6), LF = y0(7), and PH = y0(8)
+    % D = y0(6)
 elseif CF == 0
     y0 = [1.383617,6.091615, 2.393149, 1.075577, 2431.41, 100];
 end
@@ -42,7 +42,7 @@ LF = 100.*((H./D)./(H0./D0));
 PH = 100.*H./H0;
 
 tt = t0:hr:tf;
-%B = y(1); P = y(2); A = y(3); M = y(4); H = y(5); D = y(6); LF = y(7); PH = y(8);
+%B = y(1); P = y(2); A = y(3); M = y(4); H = y(5); D = y(6)
 figure;
 subplot(2,2,1);
 plot(tt, LF, 'g') %LF
