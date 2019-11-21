@@ -3,7 +3,7 @@
 % simulating genetic treatment CF=0.5
 
 function CFcodeODE_Extended
-CF = 0.5; %1 means the patient has CF, 0 means no CF
+CF = 1; %1 means the patient has CF, 0 means no CF
 if CF == 1
     y0 = [1278.037, 64.7532, 15.04461, 12.75542, 1713.089, 100];
     % initial conditions: B = y0(1), P = y0(2), A = y0(3), M = y0(4), H = y0(5),
@@ -14,6 +14,12 @@ elseif CF == 0.5
     y0 = [5.1, 9.6, 3.4, 1.7, 2273.9, 100];
     % values calculated via fsolve and a system of equations for steady
     % state parameters
+elseif CF == 0.25
+    y0= [1.4, 21.6, 9.6, 1.2, 2633.8, 100];
+elseif CF == 0.75
+    y0 = [37.1, 7.8, 2.9, 3.3, 2321.1, 100];
+elseif CF == 0.9
+    y0 = [370, 9.2, 3.2, 7.2, 2230.4, 100];
 end
 %AB = 0; %No antibiotic treatment so AB not needed
 
@@ -44,6 +50,15 @@ elseif CF == 0
 elseif CF == 0.5
     H0 = 2273.9;
     D0 = 100;  
+elseif CF == 0.75
+    H0 = 2321.1;
+    D0 = 100;  
+elseif CF == 0.25
+    H0 = 2633.8;
+    D0 = 100; 
+elseif CF == 0.9
+    H0 = 2230.4;
+    D0 = 100; 
 end
 H = [yode(:,5); yode2(:,5); yode3(:,5); yode4(:,5)];
 D = [yode(:,6); yode2(:,6); yode3(:,6); yode4(:,6)];
@@ -61,12 +76,12 @@ plot(tt, [yode(:,6); yode2(:,6); yode3(:,6); yode4(:,6)], 'b') %D
 hold off;
 xlabel('time')
 legend('LF','PH','D');
-ylim([60 120]);
+% ylim([60 120]);
 subplot(2,2,2);
 plot(tt, [yode(:,1); yode2(:,1); yode3(:,1); yode4(:,1)], 'r') %B
 xlabel('time')
 legend('B');
-ylim([0 10000]);
+% ylim([0 10000]);
 subplot(2,2,3);
 plot(tt, [yode(:,3); yode2(:,3); yode3(:,3); yode4(:,3)],'color',[0 .5 0]) %A
 % plot(tt, [yode(:,3)./2; yode2(:,3)./2; yode3(:,3)./2; yode4(:,3)./2],'color',[0 .5 0]) %A
@@ -76,16 +91,16 @@ plot(tt, [yode(:,4); yode2(:,4); yode3(:,4); yode4(:,4)],'color',[1 .5 0]) %M
 hold off;
 xlabel('time')
 legend('A','M');
-ylim([0 16]);
+% ylim([0 16]);
 subplot(2,2,4);
 plot(tt, [yode(:,2); yode2(:,2); yode3(:,2); yode4(:,2)],'color',[0 0 .7]) %P
 xlabel('time')
 legend('P');
-ylim([0 140]);
+% ylim([0 140]);
 end
 
 function f = diffeqs(~,y)
-CF = 0.5; %change whether CF is present
+CF = 1; %change whether CF is present
 
 B = y(1); P = y(2); A = y(3); M = y(4); H = y(5); D = y(6);
 Bp = (((B^0.8)*(M^1.2)) - ((0.8*B^1.2)*(P^0.1)))*(M^-2.4);
