@@ -6,7 +6,7 @@ if CF == 1
     y0 = [1278.037, 64.7532, 15.04461, 12.75542, 1713.089, 100];
     % initial conditions: B = y0(1), P = y0(2), A = y0(3), M = y0(4), H = y0(5),
     % D = y0(6)
-elseif CF == 0
+elseif CF == 0.5
     y0 = [1.383617,6.091615, 2.393149, 1.075577, 2431.41, 100];
 else
     Bparm = mean([1.383617,1278.037]);
@@ -40,7 +40,7 @@ y04 = [10000; yode3(end,2); yode3(end,3); yode3(end,4); yode3(end,5); yode3(end,
 if CF == 1
     H0 = 1713.089; %initial H and D (doesn't change throughout)
     D0 = 100;
-elseif CF == 0
+elseif CF == 0.5
     H0 = 2431.41;
     D0 = 100;
 else
@@ -85,7 +85,7 @@ ylim([60 140]);
 end
 
 function f = diffeqs(~,y)
-CF = 1; %1 means the patient has CF, 0 means no CF
+CF = 0.5; %1 means the patient has CF, 0 means no CF
 B = y(1); P = y(2); A = y(3); M = y(4); H = y(5); D = y(6);
 Bp = (((B^0.8)*(M^1.2)) - ((0.8*B^1.2)*(P^0.1)))*(M^-2.4);
 Pp = (20*(B^0.2)*(D^0.4)*(A^-0.1))-50*(P^0.5);
